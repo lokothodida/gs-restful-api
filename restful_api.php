@@ -5,14 +5,14 @@ $thisfile = basename(__FILE__, '.php');
 
 // register plugin
 register_plugin(
-	$thisfile, //Plugin id
-	'RESTful API', 	//Plugin name
-	'0.1', 		//Plugin version
-	'Lawrence Okoth-Odida',  //Plugin author
-	'https://github.com/lokothodida/', //author website
-	'Lets plugin developers build RESTful APIs in GetSimple', //Plugin description
-	'plugins', //page type - on which admin tab to display
-	'restful_api_admin'  //main function (administration)
+  $thisfile, //Plugin id
+  'RESTful API', 	//Plugin name
+  '0.1', 		//Plugin version
+  'Lawrence Okoth-Odida',  //Plugin author
+  'https://github.com/lokothodida/', //author website
+  'Lets plugin developers build RESTful APIs in GetSimple', //Plugin description
+  'plugins', //page type - on which admin tab to display
+  'restful_api_admin'  //main function (administration)
 );
 
 // Actions/Filters
@@ -27,18 +27,18 @@ function resftul_api_admin() {
 
 // Execute the REST apis
 function exec_rest_apis() {
-	if (isset($_GET['restapi'])) {
-	  // Registered the APIs
-	  exec_action('register-rest-api');
+  if (isset($_GET['restapi'])) {
+    // Registered the APIs
+    exec_action('register-rest-api');
 
-	  // Get the correct API
-	  $api = RestAPI::execute();
+    // Get the correct API
+    $api = RestAPI::execute();
 
-	  if ($api['success']) {
+    if ($api['success']) {
       header('Content-Type: application/json');
-	    exit(json_encode($api['result']));
-	  }
-	}
+      exit(json_encode($api['result']));
+    }
+  }
 }
 
 // Register a REST api
